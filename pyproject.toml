@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ncm-wat"
+version = "0.1.0"
+description = "Train Next-Concept Models on code and drive them from an agent harness"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = [
+  "torch>=2.2",
+  "numpy>=1.24",
+  "tokenizers>=0.15",
+  "tomli>=2.0; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+ncm = "ncm.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ncm*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: end-to-end training tests (seconds on CPU)"]
